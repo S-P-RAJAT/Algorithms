@@ -3,14 +3,14 @@ package com.bridgelabz.algorithms;
 import java.util.Scanner;
 
 public class MergeSort {
-	public static void merge(String listOfWords[],int leftIndex,int middleIndex,int rightIndex)
+	public static  <E extends Comparable<E>> void merge(E listOfWords[],int leftIndex,int middleIndex,int rightIndex)
 	{
 
 		int leftSubarraySize=middleIndex-leftIndex+1;
 		int rightSubarraySize=rightIndex-middleIndex;
 
-		String leftSubArray[] = new String[leftSubarraySize];
-		String rightSubArray[] = new String[rightSubarraySize];
+		E[] leftSubArray  = (E[]) new Comparable[leftSubarraySize];
+		E[] rightSubArray = (E[]) new Comparable[rightSubarraySize];
 
 		for(int index=0;index<leftSubarraySize;index++)
 		{
@@ -59,13 +59,9 @@ public class MergeSort {
 			index2++;
 		}
 
-
-
-
-
 	}
 
-	public static void mergeSort(String listOfWords[],int leftIndex,int rightIndex)
+	public static<E extends Comparable<E>> void mergeSort(E listOfWords[],int leftIndex,int rightIndex)
 	{
 
 		if(leftIndex<rightIndex)
@@ -95,7 +91,26 @@ public class MergeSort {
 		{
 			System.out.print(listOfWords[index]+" ");
 		}
-		scanner.close();
+		System.out.println("\nenter number of elements");
+		int size= scanner.nextInt();
+		System.out.println("enter 5 numbers to perform insertion sort");
+
+		Integer arrayOfNumbers[] = new Integer[size];
+
+		for(int index=0;index<size;index++)
+		{
+			arrayOfNumbers[index]=scanner.nextInt();
+		}
+
+		mergeSort(arrayOfNumbers,0,arrayOfNumbers.length-1);
+		System.out.println("after insertion sort , the words are: ");
+
+		for(int index=0;index<arrayOfNumbers.length;index++)
+		{
+			System.out.print(arrayOfNumbers[index]+" ");
+		}
 
 	}
+
+	
 }
