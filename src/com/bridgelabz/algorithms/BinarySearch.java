@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class BinarySearch {
-	public static void binarySearch(String listOfWords[], int firstIndex, int lastIndex, String key) {
+	
+	public static <E extends Comparable<E>> void binarySearch(E[] listOfWords,int firstIndex,int lastIndex,E key ) {
 		int middleIndex = (firstIndex + lastIndex) / 2;
 
 		while (firstIndex <= lastIndex) {
@@ -43,6 +44,6 @@ public class BinarySearch {
 
 		Arrays.sort(listOfWords);
 		binarySearch(listOfWords, 0, (listOfWords.length) - 1, key);
-
+		scanner.close();
 	}
 }
