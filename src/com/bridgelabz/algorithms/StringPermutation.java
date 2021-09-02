@@ -1,5 +1,7 @@
 package com.bridgelabz.algorithms;
 
+import java.util.*;
+
 public class StringPermutation {
 	static String arrayOfStringsFromRecursion[];
 	static String arrayOfStringsFromIteration[];
@@ -37,10 +39,41 @@ public class StringPermutation {
 		arrayOfStringsFromRecursion = new String[arraySize];
 		permute(string, "");
 	}
+	public static void generatePermutationsIterativeMethod(String string)
+	{
+		if (string == null || string.length() == 0) 
+		{
+			return;
+		}
 
+		List<String> partialPermutation = new ArrayList<>();
+
+		partialPermutation.add(String.valueOf(string.charAt(0)));
+
+		for (int index1 = 1; index1 < string.length(); index1++)
+		{
+
+			for (int index2 = partialPermutation.size() - 1; index2 >= 0 ; index2--)
+			{
+				String partialString = partialPermutation.remove(index2);
+
+
+				for (int index3 = 0; index3 <= partialString.length(); index3++)
+				{
+					partialPermutation.add(partialString.substring(0, index3) + string.charAt(index1) + partialString.substring(index3));
+				}
+			}
+		}
+
+
+		arrayOfStringsFromIteration= new String[partialPermutation.size()];
+		partialPermutation.toArray(arrayOfStringsFromIteration);
+		//System.out.println(partialPermutation);
+	}
 	public static void main(String[] args) {
 		String string = "abc";
-		generatePermutationsRecursiveMethod(string);
+		generatePermutationsRecursiveMethod(string);		
+		generatePermutationsIterativeMethod(string);
 		System.out.println();
 	}
 }
