@@ -3,7 +3,7 @@ package com.bridgelabz.algorithms;
 import java.util.Scanner;
 
 public class BubbleSort {
-	public static int[] bubbleSort(int arrayOfIntegers[],int size)
+	public static<E extends Comparable<E>> void bubbleSort(E arrayOfIntegers[],int size)
 	{
 
 		for(int index1=0;index1<size;index1++)
@@ -11,9 +11,9 @@ public class BubbleSort {
 
 			for(int index2=0;index2<size;index2++)
 			{
-				if(arrayOfIntegers[index2]>arrayOfIntegers[index1])
+				if(arrayOfIntegers[index2].compareTo(arrayOfIntegers[index1])>0)
 				{
-					int temp=arrayOfIntegers[index2];
+					E temp=arrayOfIntegers[index2];
 					arrayOfIntegers[index2]=arrayOfIntegers[index1];
 					arrayOfIntegers[index1]=temp;
 
@@ -23,7 +23,6 @@ public class BubbleSort {
 		}
 
 
-		return arrayOfIntegers;
 
 	}
 
@@ -34,7 +33,7 @@ public class BubbleSort {
 		System.out.println("Enter size of array");
 		int size=scanner.nextInt();
 
-		int arrayOfIntegers[]= new int[size];
+		Integer arrayOfIntegers[]= new Integer[size];
 
 		System.out.println("Enter :"+size+" number of elements");
 		for(int index=0;index<size;index++)
@@ -43,7 +42,7 @@ public class BubbleSort {
 
 		}
 
-		arrayOfIntegers=bubbleSort(arrayOfIntegers,size);
+		bubbleSort(arrayOfIntegers,size);
 
 		System.out.println("After sorting, the integers are :");
 		for(int index=0;index<size;index++)
