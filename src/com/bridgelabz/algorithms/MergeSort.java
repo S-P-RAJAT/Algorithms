@@ -3,18 +3,18 @@ package com.bridgelabz.algorithms;
 import java.util.Scanner;
 
 public class MergeSort {
-	public static  <E extends Comparable<E>> void merge(E listOfWords[],int leftIndex,int middleIndex,int rightIndex)
+	public static  <E extends Comparable<E>> void merge(E listOfWords[],int startIndex,int middleIndex,int endIndex)
 	{
 
-		int leftSubarraySize=middleIndex-leftIndex+1;
-		int rightSubarraySize=rightIndex-middleIndex;
+		int leftSubarraySize=middleIndex-startIndex+1;
+		int rightSubarraySize=endIndex-middleIndex;
 
 		E[] leftSubArray  = (E[]) new Comparable[leftSubarraySize];
 		E[] rightSubArray = (E[]) new Comparable[rightSubarraySize];
 
 		for(int index=0;index<leftSubarraySize;index++)
 		{
-			leftSubArray[index]=listOfWords[index+leftIndex];
+			leftSubArray[index]=listOfWords[index+startIndex];
 
 		}
 
@@ -24,39 +24,39 @@ public class MergeSort {
 
 		}
 
-		int index1=0,index2=0;
-		int index3=leftIndex;
+		int leftIndex=0,rightIndex=0;
+		int currentIndex=leftIndex;
 
-		while(index1<leftSubarraySize && index2<rightSubarraySize)
+		while(leftIndex<leftSubarraySize && rightIndex<rightSubarraySize)
 		{
-			if(leftSubArray[index1].compareTo(rightSubArray[index2])<0)
+			if(leftSubArray[leftIndex].compareTo(rightSubArray[rightIndex])<0)
 			{
-				listOfWords[index3]=leftSubArray[index1];
-				index1++;
+				listOfWords[currentIndex]=leftSubArray[leftIndex];
+				leftIndex++;
 
 			}
 			else
 			{
-				listOfWords[index3]=rightSubArray[index2];
-				index2++;
+				listOfWords[currentIndex]=rightSubArray[rightIndex];
+				rightIndex++;
 
 			}
 
-			index3++;
+			currentIndex++;
 		}
 
-		while(index1<leftSubarraySize)
+		while(leftIndex<leftSubarraySize)
 		{
-			listOfWords[index3]=leftSubArray[index1];
-			index3++;
-			index1++;
+			listOfWords[currentIndex]=leftSubArray[leftIndex];
+			currentIndex++;
+			leftIndex++;
 		}
 
-		while(index2<rightSubarraySize)
+		while(rightIndex<rightSubarraySize)
 		{
-			listOfWords[index3]=rightSubArray[index2];
-			index3++;
-			index2++;
+			listOfWords[currentIndex]=rightSubArray[rightIndex];
+			currentIndex++;
+			rightIndex++;
 		}
 
 	}
@@ -91,9 +91,9 @@ public class MergeSort {
 		{
 			System.out.print(listOfWords[index]+" ");
 		}
-		System.out.println("\nenter number of elements");
+		System.out.println("\nEnter number of elements");
 		int size= scanner.nextInt();
-		System.out.println("enter 5 numbers to perform insertion sort");
+		System.out.println("Enter 5 numbers to perform merge sort");
 
 		Integer arrayOfNumbers[] = new Integer[size];
 
@@ -103,14 +103,14 @@ public class MergeSort {
 		}
 
 		mergeSort(arrayOfNumbers,0,arrayOfNumbers.length-1);
-		System.out.println("after insertion sort , the words are: ");
+		System.out.println("After insertion sort , the words are: ");
 
 		for(int index=0;index<arrayOfNumbers.length;index++)
 		{
 			System.out.print(arrayOfNumbers[index]+" ");
 		}
-
+		scanner.close();
 	}
-
+	
 	
 }
